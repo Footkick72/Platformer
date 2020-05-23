@@ -1,0 +1,67 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://assets/PoisonFrames/fart00.png" type="Texture" id=1]
+[ext_resource path="res://src/Areas/Poison.gd" type="Script" id=2]
+[ext_resource path="res://assets/PoisonFrames/fart02.png" type="Texture" id=3]
+[ext_resource path="res://assets/PoisonFrames/fart03.png" type="Texture" id=4]
+[ext_resource path="res://assets/PoisonFrames/fart06.png" type="Texture" id=5]
+[ext_resource path="res://assets/PoisonFrames/fart04.png" type="Texture" id=6]
+[ext_resource path="res://assets/PoisonFrames/fart08.png" type="Texture" id=7]
+[ext_resource path="res://assets/PoisonFrames/fart07.png" type="Texture" id=8]
+[ext_resource path="res://assets/PoisonFrames/fart05.png" type="Texture" id=9]
+[ext_resource path="res://assets/PoisonFrames/fart01.png" type="Texture" id=10]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 240.0
+height = 400.0
+
+[sub_resource type="Animation" id=2]
+resource_name = "Fade"
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 1
+emission_sphere_radius = 204.0
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 20.21
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 540.1
+initial_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.2
+color = Color( 1, 1, 1, 0.0431373 )
+
+[node name="PoisonBreath" type="Area2D"]
+collision_layer = 256
+collision_mask = 0
+script = ExtResource( 2 )
+textures = [ ExtResource( 1 ), ExtResource( 10 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 9 ), ExtResource( 5 ), ExtResource( 8 ), ExtResource( 7 ) ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -200 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Fade = SubResource( 2 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+light_mask = 0
+amount = 2048
+local_coords = false
+process_material = SubResource( 3 )
+texture = ExtResource( 1 )

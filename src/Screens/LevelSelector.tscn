@@ -1,0 +1,186 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://assets/background.png" type="Texture" id=1]
+[ext_resource path="res://src/UI elements/LevelSelectButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Levels/Level01.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/Levels/Level06.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Levels/Level05.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Levels/Level04.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Levels/Level02.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Levels/Level03.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/Screens/LevelSelector.gd" type="Script" id=9]
+[ext_resource path="res://src/UI elements/NodeConnector.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/Levels/Level07.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/Levels/Level08.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/Levels/Level09.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/Levels/Level10.tscn" type="PackedScene" id=14]
+[ext_resource path="res://src/Levels/Level11.tscn" type="PackedScene" id=15]
+[ext_resource path="res://src/Levels/Level12.tscn" type="PackedScene" id=16]
+[ext_resource path="res://src/Levels/Level13.tscn" type="PackedScene" id=17]
+[ext_resource path="res://src/Levels/Level14.tscn" type="PackedScene" id=18]
+[ext_resource path="res://src/Levels/BossFight.tscn" type="PackedScene" id=19]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="Theme" id=6]
+HScrollBar/icons/decrement = null
+HScrollBar/icons/decrement_highlight = null
+HScrollBar/icons/increment = null
+HScrollBar/icons/increment_highlight = null
+HScrollBar/styles/grabber = SubResource( 1 )
+HScrollBar/styles/grabber_highlight = SubResource( 2 )
+HScrollBar/styles/grabber_pressed = SubResource( 3 )
+HScrollBar/styles/scroll = SubResource( 4 )
+HScrollBar/styles/scroll_focus = SubResource( 5 )
+
+[node name="LevelSelector" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+connector = ExtResource( 10 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -100
+
+[node name="background" type="TextureRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource( 6 )
+follow_focus = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="ScrollContainer"]
+margin_right = 4980.0
+margin_bottom = 1080.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/CenterContainer"]
+margin_top = 444.0
+margin_right = 4980.0
+margin_bottom = 636.0
+custom_constants/separation = 150
+
+[node name="LevelSelectButton" parent="ScrollContainer/CenterContainer/HBoxContainer" instance=ExtResource( 2 )]
+margin_bottom = 192.0
+levelToLoad = ExtResource( 3 )
+id = 1
+
+[node name="LevelSelectButton2" parent="ScrollContainer/CenterContainer/HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 342.0
+margin_right = 534.0
+margin_bottom = 192.0
+levelToLoad = ExtResource( 7 )
+id = 2
+
+[node name="LevelSelectButton3" parent="ScrollContainer/CenterContainer/HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 684.0
+margin_right = 876.0
+margin_bottom = 192.0
+levelToLoad = ExtResource( 8 )
+id = 3
+
+[node name="LevelSelectButton4" parent="ScrollContainer/CenterContainer/HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 1026.0
+margin_right = 1218.0
+margin_bottom = 192.0
+levelToLoad = ExtResource( 6 )
+id = 4
+
+[node name="LevelSelectButton5" parent="ScrollContainer/CenterContainer/HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 1368.0
+margin_right = 1560.0
+margin_bottom = 192.0
+levelToLoad = ExtResource( 5 )
+id = 5
+
+[node name="LevelSelectButton6" parent="ScrollContainer/CenterContainer/HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 1710.0
+margin_right = 1902.0
+margin_bottom = 192.0
+levelToLoad = ExtResource( 4 )
+id = 6
+
+[node name="LevelSelectButton7" parent="ScrollContainer/CenterContainer/HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 2052.0
+margin_right = 2244.0
+margin_bottom = 192.0
+levelToLoad = ExtResource( 11 )
+id = 7
+
+[node name="LevelSelectButton8" parent="ScrollContainer/CenterContainer/HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 2394.0
+margin_right = 2586.0
+margin_bottom = 192.0
+levelToLoad = ExtResource( 12 )
+id = 8
+
+[node name="LevelSelectButton9" parent="ScrollContainer/CenterContainer/HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 2736.0
+margin_right = 2928.0
+margin_bottom = 192.0
+levelToLoad = ExtResource( 13 )
+id = 9
+
+[node name="LevelSelectButton10" parent="ScrollContainer/CenterContainer/HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 3078.0
+margin_right = 3270.0
+margin_bottom = 192.0
+levelToLoad = ExtResource( 14 )
+id = 10
+
+[node name="LevelSelectButton11" parent="ScrollContainer/CenterContainer/HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 3420.0
+margin_right = 3612.0
+margin_bottom = 192.0
+levelToLoad = ExtResource( 15 )
+id = 11
+
+[node name="LevelSelectButton12" parent="ScrollContainer/CenterContainer/HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 3762.0
+margin_right = 3954.0
+margin_bottom = 192.0
+levelToLoad = ExtResource( 16 )
+id = 12
+
+[node name="LevelSelectButton13" parent="ScrollContainer/CenterContainer/HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 4104.0
+margin_right = 4296.0
+margin_bottom = 192.0
+levelToLoad = ExtResource( 17 )
+id = 13
+
+[node name="LevelSelectButton14" parent="ScrollContainer/CenterContainer/HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 4446.0
+margin_right = 4638.0
+margin_bottom = 192.0
+levelToLoad = ExtResource( 18 )
+id = 14
+
+[node name="BossFightSelectButton" parent="ScrollContainer/CenterContainer/HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 4788.0
+margin_right = 4980.0
+margin_bottom = 192.0
+levelToLoad = ExtResource( 19 )
+id = 15

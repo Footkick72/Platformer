@@ -1,0 +1,160 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://assets/platformPack_tile049.png" type="Texture" id=1]
+[ext_resource path="res://src/Objects/Door.gd" type="Script" id=2]
+[ext_resource path="res://assets/platformPack_tile053.png" type="Texture" id=3]
+[ext_resource path="res://assets/platformPack_tile054.png" type="Texture" id=4]
+[ext_resource path="res://assets/platformPack_tile058.png" type="Texture" id=5]
+[ext_resource path="res://assets/platformPack_tile057.png" type="Texture" id=6]
+[ext_resource path="res://assets/platformPack_tile048.png" type="Texture" id=7]
+[ext_resource path="res://assets/platformPack_tile050.png" type="Texture" id=8]
+[ext_resource path="res://assets/platformPack_tile062.png" type="Texture" id=9]
+[ext_resource path="res://assets/platformPack_tile051.png" type="Texture" id=10]
+[ext_resource path="res://assets/platformPack_tile055.png" type="Texture" id=11]
+[ext_resource path="res://assets/platformPack_tile061.png" type="Texture" id=12]
+[ext_resource path="res://assets/platformPack_tile065.png" type="Texture" id=13]
+[ext_resource path="res://assets/platformPack_tile063.png" type="Texture" id=14]
+[ext_resource path="res://assets/platformPack_tile056.png" type="Texture" id=15]
+[ext_resource path="res://assets/platformPack_tile059.png" type="Texture" id=16]
+[ext_resource path="res://assets/platformPack_tile060.png" type="Texture" id=17]
+[ext_resource path="res://assets/platformPack_tile052.png" type="Texture" id=18]
+[ext_resource path="res://assets/platformPack_tile064.png" type="Texture" id=19]
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "open",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 18 ) ],
+"loop": true,
+"name": "closed4",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "closed3",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "closed2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "closed1",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "open",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "closed4",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 17 ) ],
+"loop": true,
+"name": "closed3",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 16 ) ],
+"loop": true,
+"name": "closed2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "closed1",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 40, 80 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 11 ) ],
+"loop": true,
+"name": "up2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": true,
+"name": "pressed4",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ) ],
+"loop": true,
+"name": "pressed3",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 19 ) ],
+"loop": true,
+"name": "up4",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 15 ) ],
+"loop": true,
+"name": "pressed2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "pressed1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "up3",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "up1",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 33, 15 )
+
+[node name="Door" type="StaticBody2D"]
+script = ExtResource( 2 )
+
+[node name="TopSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 40, 40 )
+scale = Vector2( 1.25, 1.25 )
+frames = SubResource( 4 )
+animation = "closed1"
+
+[node name="BodySprite" type="AnimatedSprite" parent="."]
+position = Vector2( 40, 120 )
+scale = Vector2( 1.25, 1.25 )
+frames = SubResource( 5 )
+animation = "closed1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 40, 80 )
+shape = SubResource( 1 )
+
+[node name="Button" type="Area2D" parent="."]
+position = Vector2( 240, 120 )
+collision_layer = 0
+
+[node name="Sprite" type="AnimatedSprite" parent="Button"]
+position = Vector2( 7.62939e-06, 0 )
+scale = Vector2( 1.25, 1.25 )
+frames = SubResource( 2 )
+animation = "up1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Button"]
+position = Vector2( 0, 9 )
+shape = SubResource( 3 )
+[connection signal="body_entered" from="Button" to="." method="_on_Button_body_entered"]

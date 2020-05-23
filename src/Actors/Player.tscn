@@ -1,0 +1,307 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://assets/player.png" type="Texture" id=1]
+[ext_resource path="res://src/Actors/Player.gd" type="Script" id=2]
+[ext_resource path="res://assets/tank_explosion4.png" type="Texture" id=3]
+[ext_resource path="res://assets/playerParticle.png" type="Texture" id=4]
+[ext_resource path="res://assets/particles_trail.tres" type="Material" id=5]
+[ext_resource path="res://assets/black+v.jpg" type="Texture" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 40, 36 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 48, 33 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 47, 18 )
+
+[sub_resource type="SegmentShape2D" id=4]
+b = Vector2( 0, 0 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 48, 48 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 40, 38 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 48, 48 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 40, 40 )
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 48, 48 )
+
+[sub_resource type="Animation" id=10]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 2, 2 ), Vector2( 1e-05, 1e-05 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "die"
+} ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 3 ) ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ false ],
+"method": "set_physics_process"
+} ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("CollisionShape2D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "DiePoison"
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/Light2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 5.0 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "die"
+} ]
+}
+
+[sub_resource type="ParticlesMaterial" id=12]
+emission_shape = 2
+emission_box_extents = Vector3( 40, 1, 1 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 60.0
+gravity = Vector3( 0, 1960, 0 )
+initial_velocity = 486.64
+angular_velocity = 720.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 3.0
+color = Color( 0.0784314, 0.105882, 0.247059, 1 )
+
+[node name="Player" type="KinematicBody2D"]
+collision_mask = 8
+script = ExtResource( 2 )
+max_speed = Vector2( 800, 1200 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -48 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": "	"
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 0, -38 )
+shape = SubResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 0, -256 )
+current = true
+limit_left = 0
+limit_top = 0
+limit_smoothed = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+smoothing_speed = 9.0
+drag_margin_left = 0.0
+drag_margin_top = 0.0
+
+[node name="EnemyDetector" type="Area2D" parent="."]
+modulate = Color( 0, 0.0156863, 1, 1 )
+position = Vector2( 0, -10 )
+monitorable = false
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetector"]
+position = Vector2( 0, -38 )
+shape = SubResource( 2 )
+
+[node name="BumperDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BumperDetector"]
+shape = SubResource( 3 )
+
+[node name="CameraBottomLimit" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBottomLimit"]
+position = Vector2( 0, 540 )
+rotation = -1.5708
+shape = SubResource( 4 )
+
+[node name="LaserDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LaserDetector"]
+position = Vector2( 0, -48 )
+shape = SubResource( 5 )
+
+[node name="CoinDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CoinDetector"]
+position = Vector2( 0, -38 )
+shape = SubResource( 6 )
+
+[node name="AreaDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDetector"]
+position = Vector2( 0, -48 )
+shape = SubResource( 7 )
+
+[node name="SpikeDetector" type="Area2D" parent="."]
+position = Vector2( 0, -8 )
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpikeDetector"]
+position = Vector2( 0, -40 )
+shape = SubResource( 8 )
+
+[node name="PoisionDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PoisionDetector"]
+position = Vector2( 0, -48 )
+shape = SubResource( 9 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Die = SubResource( 10 )
+anims/DiePoison = SubResource( 11 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 0, -48 )
+scale = Vector2( 4.8, 4.8 )
+
+[node name="TrailParticles" type="Particles2D" parent="."]
+z_index = 50
+emitting = false
+amount = 12
+lifetime = 0.4
+local_coords = false
+process_material = ExtResource( 5 )
+texture = ExtResource( 4 )
+
+[node name="StompParticles" type="Particles2D" parent="."]
+emitting = false
+amount = 24
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+local_coords = false
+process_material = SubResource( 12 )
+texture = ExtResource( 4 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="Light2D" type="Light2D" parent="CanvasLayer"]
+position = Vector2( 960, 832 )
+texture = ExtResource( 6 )
+energy = 0.0
+mode = 1
+range_layer_min = -100
+[connection signal="area_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_area_entered"]
+[connection signal="body_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_body_entered"]
+[connection signal="area_entered" from="BumperDetector" to="." method="_on_BumperDetector_area_entered"]
+[connection signal="area_entered" from="CameraBottomLimit" to="." method="_on_CameraBottomLimit_area_entered"]
+[connection signal="area_exited" from="CameraBottomLimit" to="." method="_on_CameraBottomLimit_area_exited"]
+[connection signal="area_entered" from="LaserDetector" to="." method="_on_LaserDetector_area_entered"]
+[connection signal="area_entered" from="CoinDetector" to="." method="_on_CoinDetector_area_entered"]
+[connection signal="area_entered" from="AreaDetector" to="." method="_on_AreaDetector_area_entered"]
+[connection signal="area_exited" from="AreaDetector" to="." method="_on_AreaDetector_area_exited"]
+[connection signal="area_entered" from="SpikeDetector" to="." method="_on_SpikeDetector_area_entered"]
+[connection signal="body_entered" from="SpikeDetector" to="." method="_on_SpikeDetector_body_entered"]
+[connection signal="area_entered" from="PoisionDetector" to="." method="_on_PoisionDetector_area_entered"]
+[connection signal="area_exited" from="PoisionDetector" to="." method="_on_PoisionDetector_area_exited"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
